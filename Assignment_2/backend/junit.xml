@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="11" failures="0" errors="0" time="2.191">
+  <testsuite name="Health Check" errors="0" failures="0" skipped="0" timestamp="2026-05-21T13:38:59" time="2.09" tests="11">
+    <testcase classname="Health Check GET / returns 200" name="Health Check GET / returns 200" time="0.051">
+    </testcase>
+    <testcase classname="Health Check GET / response contains text" name="Health Check GET / response contains text" time="0.009">
+    </testcase>
+    <testcase classname="Input Validation POST /api/tasks with no body returns 400" name="Input Validation POST /api/tasks with no body returns 400" time="0.028">
+    </testcase>
+    <testcase classname="Input Validation POST /api/tasks with no body returns error message" name="Input Validation POST /api/tasks with no body returns error message" time="0.007">
+    </testcase>
+    <testcase classname="Input Validation POST /api/tasks with empty title returns 400" name="Input Validation POST /api/tasks with empty title returns 400" time="0.01">
+    </testcase>
+    <testcase classname="Task Schema Tests Task model is defined" name="Task Schema Tests Task model is defined" time="0.001">
+    </testcase>
+    <testcase classname="Task Schema Tests Task schema has title path" name="Task Schema Tests Task schema has title path" time="0.001">
+    </testcase>
+    <testcase classname="Task Schema Tests Task schema has completed path" name="Task Schema Tests Task schema has completed path" time="0.001">
+    </testcase>
+    <testcase classname="Task Schema Tests Task title is required" name="Task Schema Tests Task title is required" time="0.001">
+    </testcase>
+    <testcase classname="Task Schema Tests Task completed default is false" name="Task Schema Tests Task completed default is false" time="0.002">
+    </testcase>
+    <testcase classname="Task Schema Tests Task schema has timestamps" name="Task Schema Tests Task schema has timestamps" time="0.001">
+    </testcase>
+  </testsuite>
+</testsuites>
