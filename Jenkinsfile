@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS'
-    }
-
     environment {
         DOCKER_HUB_USERNAME = 'yourdockerhubusername'
         STUDENT_ID = 'YOURSTUDENTID'
