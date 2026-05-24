@@ -82,7 +82,7 @@ pipeline {
                     script {
                         withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PWD')]) {
                             docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-creds') {
-                                def backendImage = docker.build("${DOCKER_USER}/be-todo:${STUDENT_ID}")
+                                def backendImage = docker.build("${DOCKER_USER.trim()}/be-todo:${STUDENT_ID}")
                                 backendImage.push()
                                 backendImage.push('latest')
                             }
@@ -99,7 +99,7 @@ pipeline {
                     script {
                         withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PWD')]) {
                             docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-creds') {
-                                def frontendImage = docker.build("${DOCKER_USER}/fe-todo:${STUDENT_ID}")
+                                def frontendImage = docker.build("${DOCKER_USER.trim()}/fe-todo:${STUDENT_ID}")
                                 frontendImage.push()
                                 frontendImage.push('latest')
                             }
