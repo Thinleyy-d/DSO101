@@ -80,13 +80,12 @@ pipeline {
                 echo 'Building and pushing backend Docker image...'
                 dir('Assignment_2/backend') {
                     script {
-                        docker.withRegistry('https://registry.hub.docker.com',
-                                           'docker-hub-creds') {
-                            def backendImage = docker.build(
-                                "${DOCKER_HUB_USERNAME}/be-todo:${STUDENT_ID}"
-                            )
-                            backendImage.push()
-                            backendImage.push('latest')
+                        withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PWD')]) {
+                            docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-creds') {
+                                def backendImage = docker.build("${DOCKER_USER}/be-todo:${STUDENT_ID}")
+                                backendImage.push()
+                                backendImage.push('latest')
+                            }
                         }
                     }
                 }
@@ -98,13 +97,12 @@ pipeline {
                 echo 'Building and pushing frontend Docker image...'
                 dir('Assignment_2/frontend') {
                     script {
-                        docker.withRegistry('https://registry.hub.docker.com',
-                                           'docker-hub-creds') {
-                            def frontendImage = docker.build(
-                                "${DOCKER_HUB_USERNAME}/fe-todo:${STUDENT_ID}"
-                            )
-                            frontendImage.push()
-                            frontendImage.push('latest')
+                        withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PWD')]) {
+                            docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-creds') {
+                                def frontendImage = docker.build("${DOCKER_USER}/fe-todo:${STUDENT_ID}")
+                                frontendImage.push()
+                                frontendImage.push('latest')
+                            }
                         }
                     }
                 }
