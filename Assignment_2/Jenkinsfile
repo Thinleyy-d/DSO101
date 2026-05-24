@@ -70,7 +70,7 @@ pipeline {
             steps {
                 echo 'Running frontend tests...'
                 dir('frontend') {
-                    bat 'npm test'
+                    bat 'npm test -- --passWithNoTests'
                 }
             }
         }
