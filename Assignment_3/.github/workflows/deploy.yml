@@ -1,0 +1,38 @@
+name: Build and Deploy Todo App
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout code
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # 2. Login to DockerHub
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 3. Build & Push Docker Image
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/todo-app:latest .
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/todo-app:latest
+
+      # 4. Deploy to Render.com (via deploy hooks)
+      # Render does not auto-redeploy when a new image is pushed to Docker Hub.
+      # See: https://render.com/docs/deploy-hooks
+      - name: Trigger Render Deployment
+        env:
+          RENDER_FRONTEND_DEPLOY_HOOK_URL: ${{ secrets.RENDER_FRONTEND_DEPLOY_HOOK_URL }}
+          RENDER_BACKEND_DEPLOY_HOOK_URL: ${{ secrets.RENDER_BACKEND_DEPLOY_HOOK_URL }}
+        run: |
+          curl -fsS -X POST "$RENDER_FRONTEND_DEPLOY_HOOK_URL"
+          curl -fsS -X POST "$RENDER_BACKEND_DEPLOY_HOOK_URL"

@@ -1,0 +1,10 @@
+node_modules
+npm-debug.log
+.env
+.env.*
+!.env.example
+.git
+.github
+README.md
+STEP_BY_STEP_GUIDE.md
+Assets
