@@ -19,10 +19,12 @@ jobs:
           python-version: "3.9"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r Assignment_4/cicd-pipeline-project/requirements.txt
 
       - name: Run tests
-        run: pytest --tb=short -v
+        run: |
+          cd Assignment_4/cicd-pipeline-project
+          pytest --tb=short -v
 
       - name: Deploy to Render
         run: |
